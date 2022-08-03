@@ -50,7 +50,7 @@
             <p>A flower, sometimes known as a bloom or blossom, is the reproductive
                 structure found in flowering plants (plants of the division Angiospermae). The biological function of
                 a flower is to facilitate reproduction, usually by providing a mechanism for the union of sperm with eggs.</p>
-            <a href="Sign_in" class="btn-2">Log-in</a>
+            <a href="user/Sign_in" class="btn-2">Log-in</a>
         </div>
     </section>
 </main>

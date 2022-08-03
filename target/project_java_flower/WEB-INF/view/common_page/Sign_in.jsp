@@ -37,16 +37,18 @@
                 <p><i class="fa-solid fa-user"></i>
              <form:input path="username" placeholder="Enter your username"></form:input></p>
             <hr>
+                <span class="errors"><form:errors path="username"></form:errors></span>
             </label>
             <label>
                 <p>
                     <i class="fa-solid fa-lock"></i>
-             <form:input path="password" id="password" placeholder="Enter your password"></form:input>
+             <form:password path="password" id="password" placeholder="Enter your password"></form:password>
                     <i class="fa-solid fa-eye show"  id="show" onclick="password()"></i>
 
                 </p>
 
             <hr>
+                <span class="errors"><form:errors path="password"></form:errors></span>
             </label>
             <div class="btn">
                 <button>Log-in</button>
@@ -66,6 +68,6 @@
 
 
 </section>
-<script src="${pageContext.request.contextPath}/js/style.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/style.js"></script>
 </body>
 </html>

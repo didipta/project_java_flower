@@ -27,11 +27,24 @@ public class Userdaoim implements Userdao {
     }
 
     @Override
-    public User get(String username,String password) {
+    public User get(String username) {
+
+//        Session session = sessionFactory.getCurrentSession();
+////        Query<User> userQuery = session.createQuery("from User where user_name=username  and password=password ", User.class);
+//        Query<User> q=session.createQuery("from User where user_name=:u and password=:p",User.class);
+////        return userQuery.getSingleResult();
+//           q.setParameter("u",username);
+//           q.setParameter("p",password);
+//           return q.getSingleResult();
 
         Session session = sessionFactory.getCurrentSession();
-        Query<User> userQuery = session.createQuery("from User where user_name   'username'  and password 'password' ", User.class);
-        return userQuery.getSingleResult();
+//        Query<User> userQuery = session.createQuery("from User where user_name=username  and password=password ", User.class);
+        Query<User> q=session.createQuery("from User where user_name=:u",User.class);
+//        return userQuery.getSingleResult();
+        q.setParameter("u",username);
+        return q.getSingleResult();
+
+
     }
 
     @Override

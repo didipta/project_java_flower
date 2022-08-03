@@ -2,10 +2,7 @@ package com.controller;
 
 import com.model.User;
 import com.model.Userinfo;
-import com.service.Userinfoservice;
-import com.service.Userinfoserviceim;
-import com.service.Userservice;
-import com.service.Userserviceim;
+import com.service.*;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,17 +16,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/user/")
 public class UserController {
 
       private final Userservice userserviceim;
 
       private final Userinfoservice userinfoserviceim;
 
+      private final productservice productservice;
 
 
-    public UserController(Userinfoservice userinfoserviceim, Userservice userserviceim) {
+
+    public UserController(Userinfoservice userinfoserviceim, Userservice userserviceim ,productservice productservice) {
         this.userinfoserviceim = userinfoserviceim;
         this.userserviceim = userserviceim;
+        this.productservice=productservice;
     }
 
 //    public UserController(Userserviceim userserviceim) {
@@ -43,7 +44,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/Sign_in",method = RequestMethod.GET)
+    @RequestMapping( "/Sign_in")
     public String Loginpage(Model model) {
         User user=new User();
         model.addAttribute("user",user);
@@ -51,15 +52,28 @@ public class UserController {
         return "common_page/Sign_in";
     }
 
-
-    @RequestMapping(value = "/Sign_in",method = RequestMethod.POST)
-    public  String loginsubmit( @ModelAttribute("user") User user)
-    {
-
-
-        System.out.println(user.getUsername());
-        return "common_page/Sign_in";
+    @RequestMapping("/fail")
+    public String fail() {
+        return "common_page/fail";
     }
+
+
+//    @RequestMapping(value = "/Sign_in",method = RequestMethod.POST)
+//    public  String loginsubmit(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,Model model)
+//    {
+//        if (bindingResult.hasErrors()) {
+//            return "common_page/Sign_in";
+//        }
+//
+//        User u= userserviceim.get(user.getUsername());
+//        if (u.getUsertype().equals("user"))
+//        {
+//            model.addAttribute("username",u.getUsername());
+//            model.addAttribute("products",productservice.getAll());
+//            return "Userview/Homepage";
+//        }
+//        return "common_page/Sign_in";
+//    }
 
     @RequestMapping( value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -80,6 +94,11 @@ public class UserController {
         userserviceim.save(user);
         userinfoserviceim.save(usr);
 
-        return "redirect:/Sign_in";
+        return "redirect:Sign_in";
+    }
+    @RequestMapping( value = "/home", method = RequestMethod.GET)
+    public String home()
+    {
+        return "Userview/Homepage";
     }
 }

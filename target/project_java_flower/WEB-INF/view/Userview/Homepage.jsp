@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
@@ -11,7 +12,7 @@
 <head>
     <title>Flower| Homepage</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
     <script src="https://kit.fontawesome.com/c476ca993e.js" crossorigin="anonymous"></script>
 </head>
@@ -60,10 +61,53 @@
                 </form>
             </div>
         </div>
-        <img src="${pageContext.request.contextPath}/img/hero.png">
+        <img src="${pageContext.request.contextPath}/resources/img/hero.png">
     </section>
 
+
+
 </header>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<main id="section-2">
+    <section class="about_us">
+        <div class="aboutu_details">
+            <h2>ABOUT US</h2>
+            <p>A flower, sometimes known as a bloom or blossom, is the reproductive structure found in flowering
+                plants (plants of the division Angiospermae). The biological function of a flower is to facilitate reproduction,
+                usually by providing a mechanism for the union of sperm with eggs. Flowers may facilitate outcrossing
+                (fusion of sperm and eggs from different individuals in a population) resulting from
+                cross-pollination or allow selfing (fusion of sperm and egg from the same flower) when self-pollination occurs.</p>
+            <button>Read More</button>
+
+        </div>
+        <div class="about-img">
+            <img src="${pageContext.request.contextPath}/resources/img/adout-us.png">
+        </div>
+    </section>
+
+    <section class="our_product">
+        <h1>Our Products</h1>
+        <div class="all_product">
+            <c:forEach var="product" items="${products}">
+            <div class="item">
+                <div class="img">
+                    <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
+                    <div class="icon">
+                        <p><i class="fa-solid fa-heart" style="color: deeppink"></i><span style="font-size: 12px;"> 20</span></p>
+                        <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;"> 4.5</span></p>
+                    </div>
+                </div>
+                <div class="iteam_heading">
+                    <h3>${product.pname}</h3>
+                    <h4 style="color: #3b3b3b">৳- ${product.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${product.pprice+10}</span></h4>
+                    <button><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</button>
+                    <button style="color:rgb(243, 82, 99);"><i class="fa-solid fa-basket-shopping"></i> Buy Now</button>
+                </div>
+            </div>
+</c:forEach>
+
+        </div>
+    </section>
+</main>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

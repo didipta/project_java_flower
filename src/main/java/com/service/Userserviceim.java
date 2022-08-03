@@ -29,9 +29,9 @@ public class Userserviceim implements Userservice {
     }
 
     @Override
-    public User get(String username,String password) {
+    public User get(String username) {
 
-       return userdaoim.get(username,password);
+       return userdaoim.get(username);
     }
 
     @Override
