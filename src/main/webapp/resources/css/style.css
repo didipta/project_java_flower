@@ -13,6 +13,22 @@
 	padding:0;
 	list-style:none;
 }
+::-webkit-scrollbar
+{
+	width: 5px;
+
+}
+::-webkit-scrollbar-track
+{
+	border-radius: 5px;
+	box-shadow: inset 1px 0px 0px rgba(216, 211, 211, 0.548);
+
+}
+::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+	background-color: var(--color);
+}
 .index_body
 {
 	overflow: hidden;

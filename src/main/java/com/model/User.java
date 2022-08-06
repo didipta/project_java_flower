@@ -12,7 +12,7 @@ public class User {
     private  int id;
 
     @NotNull
-    @Column(name = "user_name")
+    @Column(name = "user_name", unique = true)
     private String username;
 
     @NotNull

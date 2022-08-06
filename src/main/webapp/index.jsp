@@ -32,7 +32,7 @@
                 <li><a href="">Blogs</a> </li>
                 <li><a href="">Contact us</a> </li>
                 <li><a href="">About us</a> </li>
-                <button><a href="">Log in</a></button>
+                <button><a href="${pageContext.request.contextPath}/login">Log in</a></button>
 
             </nav>
         </div>
@@ -50,7 +50,7 @@
             <p>A flower, sometimes known as a bloom or blossom, is the reproductive
                 structure found in flowering plants (plants of the division Angiospermae). The biological function of
                 a flower is to facilitate reproduction, usually by providing a mechanism for the union of sperm with eggs.</p>
-            <a href="user/Sign_in" class="btn-2">Log-in</a>
+            <a href="${pageContext.request.contextPath}/login" class="btn-2">Log-in</a>
         </div>
     </section>
 </main>

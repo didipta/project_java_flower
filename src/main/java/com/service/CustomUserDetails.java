@@ -1,4 +1,4 @@
-package com.config;
+package com.service;
 
 import com.model.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomUserDetail implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
     private User user;
 
-    public CustomUserDetail(User user) {
+    public CustomUserDetails(User user) {
         this.user = user;
     }
 
@@ -21,7 +21,7 @@ public class CustomUserDetail implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(user.getUsertype()));
-        return null;
+        return authorities;
     }
 
     @Override

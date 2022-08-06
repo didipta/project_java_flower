@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ page isELIgnored="false" %>
 <html>
@@ -32,29 +33,34 @@
 <%--            <form:password path="password"></form:password>--%>
 <%--            <hr>--%>
 <%--        </form:form>--%>
-         <form:form action="Sign_in" modelAttribute="user">
+
+        <c:if test="${param.error != null}">
+            Username/Password is incorrect
+        </c:if>
+
+        <form:form action="${pageContext.request.contextPath}/login" modelAttribute="user">
             <label>
                 <p><i class="fa-solid fa-user"></i>
-             <form:input path="username" placeholder="Enter your username"></form:input></p>
-            <hr>
+                    <form:input path="username" placeholder="Enter your username"></form:input></p>
+                <hr>
                 <span class="errors"><form:errors path="username"></form:errors></span>
             </label>
             <label>
                 <p>
                     <i class="fa-solid fa-lock"></i>
-             <form:password path="password" id="password" placeholder="Enter your password"></form:password>
+                    <form:password path="password" id="password" placeholder="Enter your password"></form:password>
                     <i class="fa-solid fa-eye show"  id="show" onclick="password()"></i>
 
                 </p>
 
-            <hr>
+                <hr>
                 <span class="errors"><form:errors path="password"></form:errors></span>
             </label>
             <div class="btn">
                 <button>Log-in</button>
             </div>
 
-         </form:form>
+        </form:form>
         <div class="sign_up_info">
            <p>Are you new to this website? Do you like what we offer ?you should
                totally join our website and experience community. <a href="registration">Registration Now...</a> </p>

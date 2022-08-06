@@ -3,20 +3,17 @@ package com.controller;
 import com.model.User;
 import com.model.Userinfo;
 import com.service.*;
+import org.apache.xpath.operations.Mod;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user/")
 public class UserController {
 
       private final Userservice userserviceim;
@@ -44,7 +41,7 @@ public class UserController {
 
     }
 
-    @RequestMapping( "/Sign_in")
+    @GetMapping( value = "/login")
     public String Loginpage(Model model) {
         User user=new User();
         model.addAttribute("user",user);
@@ -77,6 +74,8 @@ public class UserController {
 
     @RequestMapping( value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
+
+
           Userinfo user=new Userinfo();
         Userinfo userinfo=new Userinfo();
 
