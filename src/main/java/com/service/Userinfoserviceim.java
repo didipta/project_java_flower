@@ -1,8 +1,7 @@
 package com.service;
 
 import com.dao.Userinfodao;
-import com.dao.Userinfodaoim;
-import com.model.Userinfo;
+import com.model.Userinfos;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,22 +17,22 @@ public class Userinfoserviceim implements Userinfoservice {
     }
     @Transactional
     @Override
-    public List<Userinfo> getAll() {
+    public List<Userinfos> getAll() {
         return null;
     }
 
     @Override
-    public void save(Userinfo user) {
+    public void save(Userinfos user) {
         userinfodaoim.save(user);
     }
 
     @Override
-    public Userinfo get(int id) {
+    public Userinfos get(int id) {
         return null;
     }
 
     @Override
-    public void update(Userinfo user) {
+    public void update(Userinfos user) {
 
     }
 

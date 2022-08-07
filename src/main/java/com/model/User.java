@@ -29,7 +29,7 @@ public class User {
 
 
     @OneToOne(mappedBy = "user")
-    private Userinfo user;
+    private Userinfos user;
 
     public int getId() {
         return id;
@@ -71,11 +71,11 @@ public class User {
         this.usertype = usertype;
     }
 
-    public Userinfo getUser() {
+    public Userinfos getUser() {
         return user;
     }
 
-    public void setUser(Userinfo user) {
+    public void setUser(Userinfos user) {
         this.user = user;
     }
 }

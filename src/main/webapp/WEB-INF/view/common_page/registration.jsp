@@ -98,7 +98,7 @@
 
      </form:form>
         <div class="sign_up_info">
-            <p>Already have an account? <a href="Sign_in">LOG IN</a></p>
+            <p>Already have an account? <a href="${pageContext.request.contextPath}/login">LOG IN</a></p>
 
         </div>
 

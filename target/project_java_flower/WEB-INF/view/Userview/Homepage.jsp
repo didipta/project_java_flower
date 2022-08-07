@@ -40,8 +40,8 @@
                 <li><a href="">Contact us</a> </li>
                 <li><a href="">About us</a> </li>
                 <li><a href=""><i class="fa-solid fa-bell"></i></a> </li>
-                <li><a href=""><i class="fa-solid fa-user"></i></a> @diptasaha </li>
-                <button><a href="Sign_in">Log Out</a></button>
+                <li><a href=""><i class="fa-solid fa-user"></i></a> @${loggedInUser} </li>
+                <button><a href="${pageContext.request.contextPath}/logout">Log Out</a></button>
 
             </nav>
         </div>
@@ -87,7 +87,15 @@
     <section class="our_product">
         <h1>Our Products</h1>
         <div class="all_product">
+            <%! int i=0; %>
             <c:forEach var="product" items="${products}">
+                <%
+                    i++;
+                    if(i==6)
+                    {
+                        break;
+                    }
+                %>
             <div class="item">
                 <div class="img">
                     <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
@@ -99,12 +107,33 @@
                 <div class="iteam_heading">
                     <h3>${product.pname}</h3>
                     <h4 style="color: #3b3b3b">৳- ${product.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${product.pprice+10}</span></h4>
-                    <button><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</button>
                     <button style="color:rgb(243, 82, 99);"><i class="fa-solid fa-basket-shopping"></i> Buy Now</button>
                 </div>
             </div>
-</c:forEach>
 
+</c:forEach>
+        </div>
+        <div style="text-align: center; margin-top: 10px; font-weight: 700;">
+            <a href="">See more</a>
+        </div>
+
+        <div class="catagory">
+            <div class="c-item" style="background-color: #FFB3B3">
+                <div class="c-heading">
+                    <h6>Upto 30% off</h6>
+                    <h2>SUMMER</h2>
+                    <P>Shop Now</P>
+                </div>
+                <img src="${pageContext.request.contextPath}/resources/img/summer.png">
+            </div>
+            <div class="c-item" style="background-color: #B2C8DF">
+                <div class="c-heading">
+                    <h6>Weeding Collection</h6>
+                    <h2>FLOWER</h2>
+                    <P>Shop Now</P>
+                </div>
+                <img src="${pageContext.request.contextPath}/resources/img/wedding.png">
+            </div>
         </div>
     </section>
 </main>

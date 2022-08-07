@@ -1,6 +1,5 @@
 package com.service;
 
-import com.dao.Userinfodao;
 import com.dao.productdao;
 import com.model.products;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,8 @@
 package com.controller;
 
 import com.model.User;
-import com.model.Userinfo;
+import com.model.Userinfos;
 import com.service.*;
-import org.apache.xpath.operations.Mod;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +15,16 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-      private final Userservice userserviceim;
+      private final Userservices userserviceim;
 
       private final Userinfoservice userinfoserviceim;
 
       private final productservice productservice;
 
-
-
-    public UserController(Userinfoservice userinfoserviceim, Userservice userserviceim ,productservice productservice) {
-        this.userinfoserviceim = userinfoserviceim;
+    public UserController(Userservices userserviceim, Userinfoservice userinfoserviceim, com.service.productservice productservice) {
         this.userserviceim = userserviceim;
-        this.productservice=productservice;
+        this.userinfoserviceim = userinfoserviceim;
+        this.productservice = productservice;
     }
 
 //    public UserController(Userserviceim userserviceim) {
@@ -76,14 +73,14 @@ public class UserController {
     public String registration(Model model) {
 
 
-          Userinfo user=new Userinfo();
-        Userinfo userinfo=new Userinfo();
+          Userinfos user=new Userinfos();
+          Userinfos userinfo=new Userinfos();
 
           model.addAttribute("user",user);
         return "common_page/registration";
     }
     @RequestMapping( value = "/registration", method = RequestMethod.POST)
-    public String regSubmit(@Valid @ModelAttribute("user") Userinfo usr, BindingResult bindingResult)
+    public String regSubmit(@Valid @ModelAttribute("user") Userinfos usr, BindingResult bindingResult)
     {
         if (bindingResult.hasErrors()) {
             return "common_page/registration";

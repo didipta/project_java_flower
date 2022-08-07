@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Repository
 @Transactional
-public class Userdaoim implements Userdao {
+public class Userdaoim implements Userdaos {
     private final SessionFactory sessionFactory;
 
     public Userdaoim(SessionFactory sessionFactory) {

@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.model.Userinfo;
+import com.model.Userinfos;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -16,23 +16,23 @@ public class Userinfodaoim implements Userinfodao {
     }
 
     @Override
-    public List<Userinfo> getAll() {
+    public List<Userinfos> getAll() {
         return null;
     }
 
     @Override
-    public void save(Userinfo userinfo) {
+    public void save(Userinfos userinfo) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(userinfo);
     }
 
     @Override
-    public Userinfo get(int id) {
+    public Userinfos get(int id) {
         return null;
     }
 
     @Override
-    public void update(Userinfo userinfo) {
+    public void update(Userinfos userinfo) {
 
     }
 
