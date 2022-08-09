@@ -10,7 +10,7 @@ public interface productdao {
 
     public void save(products user);
 
-    public productdao get(int id);
+    public products get(int id);
 
     public void update(products products);
 

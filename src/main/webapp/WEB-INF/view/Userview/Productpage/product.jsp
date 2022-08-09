@@ -26,13 +26,16 @@
 <body>
 <div class="headered"><a href="${pageContext.request.contextPath}/User/home">Home</a>/ All product
 </div>
+
 <section class="our_product">
     <h1>All Products</h1>
     <div class="all_product">
-        <%! int i=0; %>
-        <c:forEach var="product" items="${products}">
 
-            <div class="item">
+        <c:forEach var="product" items="${products}">
+            <c:url var="productidlink" value="/product/productinfo">
+                <c:param name="productId" value="${product.id}"/>
+            </c:url>
+           <div class="item"><a href="${productidlink}">
                 <div class="img">
                     <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
                     <div class="icon">
@@ -45,7 +48,7 @@
                     <h4 style="color: #3b3b3b">৳- ${product.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${product.pprice+10}</span></h4>
                     <button style="color:rgb(243, 82, 99);"><i class="fa-solid fa-basket-shopping"></i> Buy Now</button>
                 </div>
-            </div>
+           </a></div>
 
         </c:forEach>
     </div>

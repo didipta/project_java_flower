@@ -30,8 +30,9 @@ public class productdaoim implements productdao{
     }
 
     @Override
-    public productdao get(int id) {
-        return null;
+    public products get(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.get(products.class, id);
     }
 
     @Override

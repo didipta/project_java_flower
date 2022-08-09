@@ -26,8 +26,8 @@ public class productsserviceim implements productservice{
     }
 
     @Override
-    public productdao get(int id) {
-        return null;
+    public products get(int id) {
+        return productdao.get(id);
     }
 
     @Override

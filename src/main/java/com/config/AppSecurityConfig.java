@@ -27,6 +27,7 @@ public class AppSecurityConfig {
                 .antMatchers("/login/**").hasAnyAuthority()
                 .antMatchers("/User/**").hasAnyAuthority("user")
                 .antMatchers("/admin/**").hasAnyAuthority("Admin")
+                .antMatchers("//product/**").hasAnyAuthority("user")
                 .and().
                 formLogin()
                 .loginPage("/login")

@@ -2,7 +2,6 @@ package com.controller;
 
 import com.model.User;
 import com.service.Userinfoservice;
-import com.service.Userservice;
 import com.service.Userservices;
 import com.service.productservice;
 import org.springframework.security.core.Authentication;
@@ -66,6 +65,6 @@ public class UserController {
     @RequestMapping("/allprobuct")
     public String Allproductshow(Model model) {
         model.addAttribute("products",productservice.getAll());
-        return "Userview/product";
+        return "Userview/Productpage/product";
     }
 }

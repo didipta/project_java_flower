@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/profile.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <script src="https://kit.fontawesome.com/c476ca993e.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/c476ca993e.js" crossorigin="anonymous"></script>
+
     <style>
         .headered{
             font-size: 1rem;
