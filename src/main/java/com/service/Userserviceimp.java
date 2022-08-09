@@ -36,7 +36,7 @@ public class Userserviceimp implements Userservices{
 
     @Override
     public void update(User user) {
-
+        userdaoim.update(user);
     }
 
     @Override

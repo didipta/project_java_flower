@@ -1,25 +1,28 @@
 package com.controller;
 
 import com.model.User;
-import com.model.Userinfos;
-import com.service.*;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import com.service.Userinfoservice;
+import com.service.Userservice;
+import com.service.Userservices;
+import com.service.productservice;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequestMapping("/User")
 public class UserController {
 
-      private final Userservices userserviceim;
+    private final Userservices userserviceim;
 
-      private final Userinfoservice userinfoserviceim;
+    private final Userinfoservice userinfoserviceim;
 
-      private final productservice productservice;
+    private final productservice productservice;
 
     public UserController(Userservices userserviceim, Userinfoservice userinfoserviceim, com.service.productservice productservice) {
         this.userserviceim = userserviceim;
@@ -27,74 +30,42 @@ public class UserController {
         this.productservice = productservice;
     }
 
-//    public UserController(Userserviceim userserviceim) {
-//        this.userserviceim = userserviceim;
-//    }
-
-    @InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-
-    }
-
-    @GetMapping( value = "/login")
-    public String Loginpage(Model model) {
-        User user=new User();
-        model.addAttribute("user",user);
-
-        return "common_page/Sign_in";
-    }
-
-    @RequestMapping("/fail")
-    public String fail() {
-        return "common_page/fail";
-    }
-
-
-//    @RequestMapping(value = "/Sign_in",method = RequestMethod.POST)
-//    public  String loginsubmit(@Valid @ModelAttribute("user") User user,BindingResult bindingResult,Model model)
-//    {
-//        if (bindingResult.hasErrors()) {
-//            return "common_page/Sign_in";
-//        }
-//
-//        User u= userserviceim.get(user.getUsername());
-//        if (u.getUsertype().equals("user"))
-//        {
-//            model.addAttribute("username",u.getUsername());
-//            model.addAttribute("products",productservice.getAll());
-//            return "Userview/Homepage";
-//        }
-//        return "common_page/Sign_in";
-//    }
-
-    @RequestMapping( value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-
-
-          Userinfos user=new Userinfos();
-          Userinfos userinfo=new Userinfos();
-
-          model.addAttribute("user",user);
-        return "common_page/registration";
-    }
-    @RequestMapping( value = "/registration", method = RequestMethod.POST)
-    public String regSubmit(@Valid @ModelAttribute("user") Userinfos usr, BindingResult bindingResult)
-    {
-        if (bindingResult.hasErrors()) {
-            return "common_page/registration";
-        }
-
-        User user = usr.getUser();
-        userserviceim.save(user);
-        userinfoserviceim.save(usr);
-
-        return "redirect:Sign_in";
-    }
-    @RequestMapping( value = "/home", method = RequestMethod.GET)
-    public String home()
-    {
+    @RequestMapping("/home")
+    public String productPage(Model model) {
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        model.addAttribute("loggedInUser", name);
+        model.addAttribute("products",productservice.getAll());
         return "Userview/Homepage";
+    }
+    @RequestMapping(value= "/profile",method = RequestMethod.GET)
+    public String profileshow(Model model)
+    {
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        User user=userserviceim.get(name);
+        model.addAttribute("userinfo",user);
+        return "Userview/Profilepage";
+
+    }
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String Profileupdate(HttpServletRequest request, Model model)
+    {
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        User user=userserviceim.get(name);
+        user.getUser().setAddress(request.getParameter("address"));
+        user.getUser().setPhomenumber(request.getParameter("phone"));
+        user.getUser().setEmail(request.getParameter("email"));
+        userinfoserviceim.update(user.getUser());
+        System.out.println(user.getUser().getFirstname());
+        return "redirect:profile";
+
+    }
+
+    @RequestMapping("/allprobuct")
+    public String Allproductshow(Model model) {
+        model.addAttribute("products",productservice.getAll());
+        return "Userview/product";
     }
 }

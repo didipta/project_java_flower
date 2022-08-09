@@ -51,7 +51,10 @@ public class Userdaoim implements Userdaos {
 
     @Override
     public void update(User user) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(user);
+        System.out.println(user.getUser().getAddress());
+        session.flush();
     }
 
     @Override

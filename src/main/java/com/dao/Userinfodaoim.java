@@ -33,7 +33,8 @@ public class Userinfodaoim implements Userinfodao {
 
     @Override
     public void update(Userinfos userinfo) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(userinfo);
     }
 
     @Override

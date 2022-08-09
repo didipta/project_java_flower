@@ -24,7 +24,8 @@ public class AppSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**").hasAnyAuthority("user")
+                .antMatchers("/login/**").hasAnyAuthority()
+                .antMatchers("/User/**").hasAnyAuthority("user")
                 .antMatchers("/admin/**").hasAnyAuthority("Admin")
                 .and().
                 formLogin()

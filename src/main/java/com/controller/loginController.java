@@ -16,7 +16,7 @@ public class loginController {
 
         if(name.equals("[user]"))
         {
-           return "redirect:/api/one";
+           return "redirect:/User/home";
         }
         else if(name.equals("[Admin]"))
         {

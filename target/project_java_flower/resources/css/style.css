@@ -263,7 +263,7 @@ nav button a
 	font-weight: 400;
 	color: rgba(26, 25, 25, 0.674);
 }
-.middel_form_2 form button
+.middel_form_2 form button,.details button
 {
 	height: 40px;
 	width: 100px;
@@ -279,7 +279,7 @@ nav button a
 
 
 }
-#section-2
+#section-2,#section-3
 {
 	max-width: 1300px;
 	padding:20px 40px;
@@ -336,7 +336,7 @@ nav button a
 {
 
 }
-.our_product h1
+.our_product h1,#section-3 h1
 {
 	text-align: center;
 	font-size: 1.5rem;
@@ -361,6 +361,7 @@ nav button a
 	text-align: center;
 	margin: 10px;
 	cursor: pointer;
+	margin-bottom: 20px;
 
 }
 .item .img
@@ -410,7 +411,7 @@ nav button a
 {
 	margin-top: 10px;
 	display: grid;
-	grid-template-columns:repeat(2,1fr);
+	grid-template-columns:repeat(3,1fr);
 	justify-content: space-around;
 	align-items: center;
 	grid-gap: 20px;
@@ -425,28 +426,143 @@ nav button a
 	box-shadow: 5px 10px 5px 5px rgba(0, 0, 0, 0.05);
 	gap: 30px;
 	padding: 10px 10px;
+
 	border-radius: 5px;
+	overflow: hidden;
 }
 .c-item .c-heading h2
 {
 	font-weight: 700;
 	letter-spacing: 4px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	font-size: 1.8rem;
+	color: white;
 }
 .c-item img {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 100px;
 }
 .c-item p
 {
-	font-weight: 600;
-	color: var(--color);
+	font-weight: 700;
+	color: #171717;
 }
 .c-item h6
 {
-	font-weight: 200;
+	font-weight: 600;
 	font-size: 1rem;
-	color: #444444;
+	color: #333333;
+}
+.birth-day-gift{
+	width: 100%;
+	height: auto;
+	display: flex;
+	background-color: #c6c6f1;
+	justify-content: center;
+	gap: 100px;
+	overflow: hidden;
+	align-items: center;
+}
+.birth-day-gift img
+{
+	width: 550px;
+	height: 550px;
+}
+.birth-day-gift .details
+{
+	text-align: center;
+}
+.details h3,.details h2
+{
+	margin-bottom: 20px;
+	margin-top: 20px;
+	letter-spacing: 3px;
+	font-size: 1.6rem;
+	font-weight: 200;
+
+}
+.details h2
+{
+	font-size: 1.3rem;
+	font-weight: bold;
+
+}
+.details button
+{
+	width: 250px;
+	border-radius: 5px;
+}
+.blog
+{
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	gap: 20px;
+	justify-content:space-around;
+	text-align: center;
+
+
+}
+.blog-item
+{
+   padding: 15px;
+	margin: 10px;
+	box-shadow: 5px 10px 5px 5px rgba(128, 128, 128, 0.14);
+	border-radius: 5px;
+}
+.blog-item h2
+{
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+	margin-top: 10px;
+	color: var(--color);
+}
+.blog-item p
+{
+	font-size: 0.7rem;
+	text-align: justify-all;
+	margin-top: 10px;
+}
+.blog img
+{
+	width: 100%;
+	height: 200px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+.see-more
+{
+	text-align: center;
+	margin-top: 100px;
+
+}
+.see-more a
+{
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+.footer a
+{
+	color: black;
+}
+.footer
+{
+	padding: 15px;
+	padding-bottom: 25px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #e7e7e7;
+}
+.footer-list li
+{
+	color: #2c2c2c;
+	margin: 10px;
+}
+.socail-app a
+{
+	margin: 15px;
+	font-size: 1.5rem;
+	padding-top: 15px;
+
 }

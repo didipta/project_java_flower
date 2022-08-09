@@ -33,7 +33,7 @@ public class Userinfoserviceim implements Userinfoservice {
 
     @Override
     public void update(Userinfos user) {
-
+  userinfodaoim.update(user);
     }
 
     @Override

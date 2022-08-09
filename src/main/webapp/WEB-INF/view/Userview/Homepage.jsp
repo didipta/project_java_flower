@@ -25,7 +25,7 @@
         <div class="navigation">
             <nav>
                 <li><a href="">Home</a> </li>
-                <li><a href="">Product</a> </li>
+                <li><a href="${pageContext.request.contextPath}/User/allprobuct">Product</a> </li>
                 <li><a href="">Order info <i class="fa-solid fa-angle-down"></i>
                     <ul class="nav-dropdown">
                         <li><a href=""></a>All order </li>
@@ -40,7 +40,7 @@
                 <li><a href="">Contact us</a> </li>
                 <li><a href="">About us</a> </li>
                 <li><a href=""><i class="fa-solid fa-bell"></i></a> </li>
-                <li><a href=""><i class="fa-solid fa-user"></i></a> @${loggedInUser} </li>
+                <li><a href="${pageContext.request.contextPath}/User/profile"><i class="fa-solid fa-user"></i> @${loggedInUser} </a></li>
                 <button><a href="${pageContext.request.contextPath}/logout">Log Out</a></button>
 
             </nav>
@@ -88,14 +88,8 @@
         <h1>Our Products</h1>
         <div class="all_product">
             <%! int i=0; %>
-            <c:forEach var="product" items="${products}">
-                <%
-                    i++;
-                    if(i==6)
-                    {
-                        break;
-                    }
-                %>
+            <c:forEach var="product" items="${products}" begin="0" end="4">
+
             <div class="item">
                 <div class="img">
                     <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
@@ -112,13 +106,14 @@
             </div>
 
 </c:forEach>
-        </div>
-        <div style="text-align: center; margin-top: 10px; font-weight: 700;">
-            <a href="">See more</a>
+            <div class="see-more">
+                <a href="${pageContext.request.contextPath}/User/allprobuct">See more <i class="fa-solid fa-right-long"></i></a>
+            </div>
         </div>
 
+
         <div class="catagory">
-            <div class="c-item" style="background-color: #FFB3B3">
+            <div class="c-item" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
                 <div class="c-heading">
                     <h6>Upto 30% off</h6>
                     <h2>SUMMER</h2>
@@ -126,7 +121,7 @@
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/summer.png">
             </div>
-            <div class="c-item" style="background-color: #B2C8DF">
+            <div class="c-item" style="background-image: linear-gradient(to right top, #e78c2f, #f4814d, #f97a69, #f77884, #ed7b9c, #e586bd, #d394d9, #baa3ee, #8fbdff, #58d6ff, #36eaff, #5ffbf1);">
                 <div class="c-heading">
                     <h6>Weeding Collection</h6>
                     <h2>FLOWER</h2>
@@ -134,9 +129,105 @@
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/wedding.png">
             </div>
+            <div class="c-item" style="background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgb(97,157,224) 100%);">
+                <div class="c-heading">
+                    <h6>GIFT Collection</h6>
+                    <h2>FLOWER</h2>
+                    <P>Shop Now</P>
+                </div>
+                <img src="${pageContext.request.contextPath}/resources/img/gift.png">
+            </div>
         </div>
+
     </section>
 </main>
+<div class="birth-day-gift">
+<img src="${pageContext.request.contextPath}/resources/img/birthday.png">
+    <div class="details">
+        <h2>Beautiful Range of</h2>
+        <h3>ColourFul Birthday Flower</h3>
+        <button>View Collection</button>
+    </div>
+</div>
+<main id="section-3">
+    <h1>OUR BLOG</h1>
+<div class="blog">
+    <div class="blog-item">
+        <img src="${pageContext.request.contextPath}/resources/img/blog-2.jpg">
+        <div class="blog-details">
+            <h2>BeautiFul Multiple Flower</h2>
+            <p>Undoubtedly one of the most beautiful flowers in the world,
+                tulips are bulbous showy blooms with six distinct petals.
+                While yellow tulips symbolise cheerfulness, white ones mean forgiveness and the red ones stand for true love.
+                The myriad colours make excellent floral arrangements. Tulips are the 11th wedding anniversary flowers.</p>
+        </div>
+    </div>
+    <div class="blog-item">
+        <img src="${pageContext.request.contextPath}/resources/img/blog-1.webp">
+        <div class="blog-details">
+            <h2>BeautiFul Bridal Flowers</h2>
+            <p>Undoubtedly one of the most beautiful flowers in the world,
+                tulips are bulbous showy blooms with six distinct petals.
+                While yellow tulips symbolise cheerfulness, white ones mean forgiveness and the red ones stand for true love.
+                The myriad colours make excellent floral arrangements. Tulips are the 11th wedding anniversary flowers.</p>
+        </div>
+    </div>
+    <div class="blog-item">
+        <img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg">
+        <div class="blog-details">
+            <h2>Bridesmaid Shower Flower</h2>
+            <p>Undoubtedly one of the most beautiful flowers in the world,
+                tulips are bulbous showy blooms with six distinct petals.
+                While yellow tulips symbolise cheerfulness, white ones mean forgiveness and the red ones stand for true love.
+                The myriad colours make excellent floral arrangements. Tulips are the 11th wedding anniversary flowers.</p>
+        </div>
+    </div>
+</div>
+
+
+
+</main>
+<div class="footer">
+    <div class="footer-address">
+        <h2>Contact Us</h2>
+
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i>
+            Road-18,Nikonjo-2,khilkhet,Dhaka,Bangladesh.<br>
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            phone-01881401818<br>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Anyday - 10AM To 10PM<br>
+            <i class="fa fa-envelope-o" aria-hidden="true"></i> diptacompani12@gmail.com
+        </p>
+    </div>
+
+    <div class="footer-list">
+        <h2>MENU</h2>
+
+        <li><a href="">HOME</a></li>
+        <li><a href="">CATALOG</a></li>
+        <li><a href="">BLOG</a></li>
+        <li><a href="">ADOUT</a></li>
+        <li><a href="">HELP</a></li>
+    </div>
+    <div class="footer-list">
+        <h2>CATAGORIES</h2>
+        <li><a href=""> Beautiful flower </a></li>
+        <li><a href=""> Wedding Collection </a></li>
+        <li><a href=""> Summer flowers</a></li>
+        <li><a href=""> Colorfull flowers </a></li>
+        <li><a href=""> Flowers </a></li>
+
+    </div>
+
+    <div class="socail-app">
+        <h2>SOCIAL MEDIA APPS</h2><br>
+        <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://mail.google.com/mail/u/0/?tab=rm#inbox?compose=new"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.whatsapp.com/"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+    </div>
+</div>
+
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
