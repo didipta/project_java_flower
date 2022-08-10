@@ -36,6 +36,11 @@ public class productsserviceim implements productservice{
     }
 
     @Override
+    public List<products> getAll(String category) {
+        return productdao.getAll(category);
+    }
+
+    @Override
     public void delete(int id) {
 
     }

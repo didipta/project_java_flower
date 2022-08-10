@@ -44,4 +44,12 @@ public class productdaoim implements productdao{
     public void delete(int id) {
 
     }
+
+    @Override
+    public List<products> getAll(String category) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<products> userQuery = session.createQuery("from products where Category=:c", products.class);
+        userQuery.setParameter("c", category);
+        return userQuery.getResultList();
+    }
 }

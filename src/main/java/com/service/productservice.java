@@ -13,6 +13,7 @@ public interface productservice {
     public products get(int id);
 
     public void update(products products);
+    public List<products> getAll(String category);
 
     public void delete(int id);
 }

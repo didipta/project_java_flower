@@ -20,8 +20,16 @@ public class ProductController {
     public String productshow(@RequestParam("productId") int id, Model model)
     {
        products product= productservice.get(id);
-        model.addAttribute("products",productservice.getAll());
+        model.addAttribute("products",productservice.getAll(product.getCategory()));
          model.addAttribute("product",product);
          return "Userview/Productpage/productinfo";
+    }
+
+    @RequestMapping("/categoryproduct")
+    public String categoryproduct(@RequestParam("category") String cate, Model model)
+    {
+        model.addAttribute("category",cate);
+        model.addAttribute("products",productservice.getAll(cate));
+        return "Userview/Productpage/Category";
     }
 }

@@ -55,7 +55,7 @@
         </div>
     </div>
     <section class="our_product">
-        <h1>Our Products</h1>
+        <h1>Related Products</h1>
         <div class="all_product">
             <%! int i=0; %>
             <c:forEach var="products" items="${products}" begin="0" end="4">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="iteam_heading">
-                        <h3>${product.pname}</h3>
+                        <h3>${products.pname}</h3>
                         <h4 style="color: #3b3b3b">৳- ${products.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${products.pprice+10}</span></h4>
                         <button style="color:rgb(243, 82, 99);"><i class="fa-solid fa-basket-shopping"></i> Buy Now</button>
                     </div>

@@ -112,33 +112,41 @@
                 <a href="${pageContext.request.contextPath}/User/allprobuct">See more <i class="fa-solid fa-right-long"></i></a>
             </div>
         </div>
-
+        <c:url var="SUMMERlink" value="/product/categoryproduct">
+            <c:param name="category" value="Summer flower"/>
+        </c:url>
+        <c:url var="Weedinglink" value="/product/categoryproduct">
+            <c:param name="category" value="Gift flower"/>
+        </c:url>
+        <c:url var="GIFTlink" value="/product/categoryproduct">
+            <c:param name="category" value="Gift flower"/>
+        </c:url>
 
         <div class="catagory">
-            <div class="c-item" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+           <a href="${SUMMERlink}"> <div class="c-item" style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
                 <div class="c-heading">
                     <h6>Upto 30% off</h6>
                     <h2>SUMMER</h2>
                     <P>Shop Now</P>
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/summer.png">
-            </div>
-            <div class="c-item" style="background-image: linear-gradient(to right top, #e78c2f, #f4814d, #f97a69, #f77884, #ed7b9c, #e586bd, #d394d9, #baa3ee, #8fbdff, #58d6ff, #36eaff, #5ffbf1);">
+            </div></a>
+            <a href=""> <div class="c-item" style="background-image: linear-gradient(to right top, #e78c2f, #f4814d, #f97a69, #f77884, #ed7b9c, #e586bd, #d394d9, #baa3ee, #8fbdff, #58d6ff, #36eaff, #5ffbf1);">
                 <div class="c-heading">
                     <h6>Weeding Collection</h6>
                     <h2>FLOWER</h2>
                     <P>Shop Now</P>
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/wedding.png">
-            </div>
-            <div class="c-item" style="background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgb(97,157,224) 100%);">
+            </div></a>
+            <a href="${GIFTlink}">  <div class="c-item" style="background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgb(97,157,224) 100%);">
                 <div class="c-heading">
                     <h6>GIFT Collection</h6>
                     <h2>FLOWER</h2>
                     <P>Shop Now</P>
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/gift.png">
-            </div>
+            </div></a>
         </div>
 
     </section>
