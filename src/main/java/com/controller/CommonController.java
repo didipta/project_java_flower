@@ -90,7 +90,7 @@ public class CommonController {
         userserviceim.save(user);
         userinfoserviceim.save(usr);
 
-        return "redirect:Sign_in";
+        return "redirect:/login";
     }
     @RequestMapping( value = "/home", method = RequestMethod.GET)
     public String home()

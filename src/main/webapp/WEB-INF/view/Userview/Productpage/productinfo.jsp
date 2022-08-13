@@ -42,9 +42,10 @@
             <hr>
             <p>${product.pdescription}</p>
             <h4 style="color: #3b3b3b">৳- ${product.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${product.pprice+10}</span></h4>
-            <form action="" method="post">
+            <form action="addtocart" method="Post">
                 <div class="input">
-                    <input type="number" name="" id="value" value="1" min="1" >
+                    <input type="hidden" name="p_id" value="${product.id}">
+                    <input type="number" name="quantity" id="value" value="1" min="1" >
                 </div>
                 <div class="btn-2">
                     <button style="background-color:rgb(243,80,97);"><i class="fa-solid fa-basket-shopping"></i> Buy Now</button>

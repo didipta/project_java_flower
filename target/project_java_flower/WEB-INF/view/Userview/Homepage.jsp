@@ -30,7 +30,7 @@
                     <ul class="nav-dropdown">
                         <li><a href=""></a>All order </li>
                         <li><a href=""></a>Order Status </li>
-                        <li><a href=""></a>Card item </li>
+                        <li><a href="${pageContext.request.contextPath}/product/addtocartlist">Card item </a></li>
                         <li><a href=""></a>Return product </li>
 
                     </ul>
@@ -116,7 +116,7 @@
             <c:param name="category" value="Summer flower"/>
         </c:url>
         <c:url var="Weedinglink" value="/product/categoryproduct">
-            <c:param name="category" value="Gift flower"/>
+            <c:param name="category" value="Wedding flower"/>
         </c:url>
         <c:url var="GIFTlink" value="/product/categoryproduct">
             <c:param name="category" value="Gift flower"/>
@@ -131,7 +131,7 @@
                 </div>
                 <img src="${pageContext.request.contextPath}/resources/img/summer.png">
             </div></a>
-            <a href=""> <div class="c-item" style="background-image: linear-gradient(to right top, #e78c2f, #f4814d, #f97a69, #f77884, #ed7b9c, #e586bd, #d394d9, #baa3ee, #8fbdff, #58d6ff, #36eaff, #5ffbf1);">
+            <a href="${Weedinglink}"> <div class="c-item" style="background-image: linear-gradient(to right top, #e78c2f, #f4814d, #f97a69, #f77884, #ed7b9c, #e586bd, #d394d9, #baa3ee, #8fbdff, #58d6ff, #36eaff, #5ffbf1);">
                 <div class="c-heading">
                     <h6>Weeding Collection</h6>
                     <h2>FLOWER</h2>

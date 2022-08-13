@@ -2,6 +2,7 @@ package com.model;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "product")
 public class products {
@@ -20,9 +21,7 @@ public class products {
     @Column(name = "Category")
    private String Category ;
     @Column(name = "P_quantity ")
-   private int Pquantity ;
-
-
+    private int Pquantity ;
     public int getId() {
         return id;
     }
