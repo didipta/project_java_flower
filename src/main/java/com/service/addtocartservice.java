@@ -9,9 +9,10 @@ public interface addtocartservice {
 
     public void save(addtocarts addtocart);
 
-    public addtocarts get(String username);
+    public addtocarts get(int id);
 
     public void update(addtocarts addtocart);
 
     public void delete(int id);
+
 }

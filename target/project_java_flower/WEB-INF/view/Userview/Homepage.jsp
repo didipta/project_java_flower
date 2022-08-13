@@ -30,7 +30,7 @@
                     <ul class="nav-dropdown">
                         <li><a href=""></a>All order </li>
                         <li><a href=""></a>Order Status </li>
-                        <li><a href="${pageContext.request.contextPath}/product/addtocartlist">Card item </a></li>
+                        <li><a href="${pageContext.request.contextPath}/product/addtocartlist">Cart item </a></li>
                         <li><a href=""></a>Return product </li>
 
                     </ul>
@@ -57,8 +57,9 @@
             <div class="middel_form_2">
                 <h3>Find your Desired flower</h3>
                 <form action="/index.html" method="post" >
-                    <input type="email" name="" id="" placeholder="Enter your Desired flower Name"><button>Find</button>
+                    <input type="text" name="" id="search-live" placeholder="Enter your Desired flower Name"><button>Find</button>
                 </form>
+              <div id="result-search" class="searchshow"></div>
             </div>
         </div>
         <img src="${pageContext.request.contextPath}/resources/img/hero.png">
@@ -239,5 +240,30 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$("#search-live").on('keyup',function(){
+$value=$(this).val();
+if($value!="")
+{
+
+$.ajax({
+url:"${pageContext.request.contextPath}/product/search",
+type:"GET",
+data:{'search':$value},
+success:function(data)
+{
+$('#result-search').html(data);
+}
+});
+}
+else
+{
+$('#result-search').html('');
+}
+
+});
+
+</script>
 </body>
 </html>

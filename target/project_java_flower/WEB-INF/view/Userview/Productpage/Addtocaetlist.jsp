@@ -11,29 +11,48 @@
 <html>
 <head>
     <title>Flower| Add to cart</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productpage.css">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderpage.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.nice-number.css">
+    <style>
+        .headered{
+            font-size: 1rem;
+            text-align: center;
+            padding: 15px;
+            color: #3f3d3d;
+            font-weight: bolder;
+        }
+    </style>
 </head>
 <body>
-
+<div class="headered"><a href="${pageContext.request.contextPath}/User/home">Home</a>/ All cart iteam
+</div>
+<header style="text-align: center">
+    <h1>All Cart iteam</h1>
+</header>
 <div class="contaim">
     <div class="addtocartlist">
        <c:set var="price" value="${0}"></c:set>
        <c:set var="quantity" value="${0}"></c:set>
        <c:forEach var="addtocarts" items="${addtocart}">
+           <c:url var="productidlink" value="/product/productinfo">
+               <c:param name="productId" value="${addtocarts.product}"/>
+           </c:url>
+           <c:url var="productdelete" value="/product/addtocartdelete">
+               <c:param name="productdele" value="${addtocarts.id}"/>
+           </c:url>
            <div class="add-item">
-               <h1>${addtocarts.pname}</h1>
+               <a href="${productidlink}"><h1>${addtocarts.pname}</h1></a>
                <h3>৳-${addtocarts.aquantity*addtocarts.pprice}</h3>
-               <form action="" method="Post">
+               <form action="addtocartupdate" method="Post">
                    <div class="input">
-                       <input type="hidden" name="p_id" value="${addtocarts.id}">
+                       <input type="hidden" name="a_id" value="${addtocarts.id}">
                        <input type="number" name="quantity" id="value" value="${addtocarts.aquantity}" min="1" >
                    </div>
                    <div class="btn-add">
                        <button style="background-color:rgb(240,48,106);"><i class="fa-solid fa-cart-plus"></i></i>update</button>
-                       <button style="background-color:rgb(248,76,14);"><i class="fa-solid fa-cart-plus"></i></i>Delete</button>
+                      <button style="background-color:rgb(248,76,14);"><i class="fa-solid fa-cart-plus"></i></i> <a href="${productdelete}" style="color: white">Delete</a></button>
                    </div>
                </form>
 
@@ -49,6 +68,8 @@
         <h1>DELIVARY CHARGE- <span>50 TK</span></h1>
         <HR>
         <h1>Total - <span>${price+50} Tk</span></h1>
+
+        <button>Place order</button>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -15,5 +15,7 @@ public interface productservice {
     public void update(products products);
     public List<products> getAll(String category);
 
+    public List<products> search(String Name);
+
     public void delete(int id);
 }

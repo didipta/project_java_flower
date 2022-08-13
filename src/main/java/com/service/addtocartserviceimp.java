@@ -30,17 +30,17 @@ public class addtocartserviceimp implements addtocartservice{
     }
 
     @Override
-    public addtocarts get(String username) {
-        return null;
+    public addtocarts get(int id) {
+        return addtocartdaos.get(id);
     }
 
     @Override
     public void update(addtocarts addtocart) {
-
+      addtocartdaos.update(addtocart);
     }
 
     @Override
     public void delete(int id) {
-
+     addtocartdaos.delete(id);
     }
 }

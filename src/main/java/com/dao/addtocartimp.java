@@ -38,17 +38,21 @@ public class addtocartimp implements addtocartdao {
     }
 
     @Override
-    public addtocarts get(String username) {
-        return null;
+    public addtocarts get(int id) {
+
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.get(addtocarts.class, id);
     }
 
     @Override
     public void update(addtocarts addtocart) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(addtocart);
     }
 
     @Override
     public void delete(int id) {
-
+        addtocarts addtocarts = get(id);
+        sessionFactory.getCurrentSession().delete(addtocarts);
     }
 }

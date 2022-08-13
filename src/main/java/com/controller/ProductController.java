@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/product")
@@ -54,7 +56,7 @@ public class ProductController {
         addtocarts.setAquantity(Integer.parseInt(request.getParameter("quantity")));
         addtocartservice.save(addtocarts);
 
-        return "redirect:/User/home";
+        return "redirect:addtocartlist";
     }
     @RequestMapping("/addtocartlist")
     public String addtocartlist(Model model) {
@@ -62,5 +64,37 @@ public class ProductController {
         String name=authentication.getName();
         model.addAttribute("addtocart",addtocartservice.getAll(name));
       return "Userview/Productpage/Addtocaetlist";
+    }
+    @RequestMapping("/addtocartdelete")
+    public String addtocartdelete(@RequestParam("productdele") int id,Model model) {
+        addtocartservice.delete(id);
+        return "redirect:addtocartlist";
+    }
+    @RequestMapping("/addtocartupdate")
+    public String addtocartupdate(HttpServletRequest request, Model model) {
+     addtocarts act= addtocartservice.get(Integer.parseInt(request.getParameter("a_id")));
+     act.setAquantity(Integer.parseInt(request.getParameter("quantity")));
+     addtocartservice.update(act);
+     return "redirect:addtocartlist";
+    }
+    @RequestMapping("/search")
+    @ResponseBody
+    public String search(@RequestParam("search") String name ,Model model) {
+        String output="";
+        List<products> products=productservice.search(name);
+        if(products!=null)
+        {
+            output+="<div class='allsearch'>";
+            for (products product:products) {
+
+
+
+                output+="<li><a href='/project_java_flower_war_exploded/product/productinfo?productId="+product.getId()+"'>"+product.getPname()+"</a></li>";
+
+            }
+            output+="</div>";
+
+        }
+            return output;
     }
 }

@@ -16,4 +16,5 @@ public interface productdao {
 
     public void delete(int id);
     public List<products> getAll(String category);
+    public List<products> search(String firstName);
 }

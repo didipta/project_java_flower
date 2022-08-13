@@ -41,6 +41,11 @@ public class productsserviceim implements productservice{
     }
 
     @Override
+    public List<products> search(String Name) {
+        return productdao.search(Name);
+    }
+
+    @Override
     public void delete(int id) {
 
     }

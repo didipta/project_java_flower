@@ -52,4 +52,10 @@ public class productdaoim implements productdao{
         userQuery.setParameter("c", category);
         return userQuery.getResultList();
     }
+    @Override
+    public List<products> search(String Name) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<products> userQuery = session.createQuery("from products where p_name like '%" + Name + "%'", products.class);
+        return userQuery.getResultList();
+    }
 }

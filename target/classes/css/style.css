@@ -566,3 +566,20 @@ nav button a
 	padding-top: 15px;
 
 }
+.allsearch
+{
+	height:100px;
+	background-color: rgba(239, 238, 238, 0.8);
+	overflow-y:scroll ;
+}
+.searchshow li
+{
+	margin: 5px;
+	padding: 5px;
+	padding-left: 10px;
+
+}
+.searchshow li a{
+	color: black;
+	font-weight: bolder;
+}
