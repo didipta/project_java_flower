@@ -2,6 +2,7 @@ package com.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +31,9 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Userinfos user;
+
+    @OneToMany(mappedBy="username")
+    private List<orders> ordersList;
 
     public int getId() {
         return id;
@@ -77,5 +81,13 @@ public class User {
 
     public void setUser(Userinfos user) {
         this.user = user;
+    }
+
+    public List<orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<orders> ordersList) {
+        this.ordersList = ordersList;
     }
 }
