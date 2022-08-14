@@ -2,9 +2,12 @@ package com.service;
 
 import com.dao.orderdao;
 import com.model.orders;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class orderseviceimp implements orderservice{
     private final orderdao orderdaos;
 
@@ -13,10 +16,12 @@ public class orderseviceimp implements orderservice{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<orders> getAll(String username) {
         return orderdaos.getAll(username);
     }
 
+    @Transactional
     @Override
     public void save(orders addtocart) {
      orderdaos.save(addtocart);

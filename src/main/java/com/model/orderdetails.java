@@ -11,7 +11,7 @@ public class orderdetails {
     private int id ;
     @ManyToOne
     @JoinColumn(name = "order_id")
-   private orders orderid;
+    private orders orderid;
     @OneToOne
     @JoinColumn(name = "product_id")
    private products productid;

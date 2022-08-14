@@ -28,7 +28,7 @@
                 <li><a href="${pageContext.request.contextPath}/User/allprobuct">Product</a> </li>
                 <li><a href="">Order info <i class="fa-solid fa-angle-down"></i>
                     <ul class="nav-dropdown">
-                        <li><a href=""></a>All order </li>
+                        <li><a href="${pageContext.request.contextPath}/product/orderlist">All order </a></li>
                         <li><a href=""></a>Order Status </li>
                         <li><a href="${pageContext.request.contextPath}/product/addtocartlist">Cart item </a></li>
                         <li><a href=""></a>Return product </li>

@@ -32,7 +32,8 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Userinfos user;
 
-    @OneToMany(mappedBy="username")
+
+    @OneToMany(mappedBy ="users")
     private List<orders> ordersList;
 
     public int getId() {

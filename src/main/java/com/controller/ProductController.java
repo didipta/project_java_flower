@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.model.addtocarts;
-import com.model.products;
+import com.model.*;
+import com.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,10 +19,17 @@ import java.util.List;
 public class ProductController {
     private final com.service.productservice productservice;
     private final com.service.addtocartservice addtocartservice;
+    private final Userservices userserviceim;
+    private final orderservice orderservices;
+    private final orderdetailservice orderdetailservices;
 
-    public ProductController(com.service.productservice productservice,com.service.addtocartservice addtocartservice) {
+
+    public ProductController(com.service.productservice productservice, com.service.addtocartservice addtocartservice, Userservices userserviceim, orderservice orderservices, orderdetailservice orderdetailservices) {
         this.productservice = productservice;
-        this.addtocartservice=addtocartservice;
+        this.addtocartservice = addtocartservice;
+        this.userserviceim = userserviceim;
+        this.orderservices = orderservices;
+        this.orderdetailservices = orderdetailservices;
     }
 
     @RequestMapping(value = "/productinfo",method = RequestMethod.GET)
@@ -97,4 +104,43 @@ public class ProductController {
         }
             return output;
     }
+    @RequestMapping("/orders")
+    public String orders(HttpServletRequest request, Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        orders orders=new orders();
+        orders.setUsername(name);
+        User u=userserviceim.get(name);
+        orders.setUsers(u);
+        orders.setQuantity(Integer.parseInt(request.getParameter("quantitys")));
+        orders.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
+        orders.setToken(request.getParameter("order_id"));
+        orders.setStatus("order is processing");
+        orderservices.save(orders);
+        List<addtocarts> addtocartss=addtocartservice.getAll(name);
+        for (addtocarts addto:addtocartss)
+        {
+            orderdetails orderdetails=new orderdetails();
+            orderdetails.setOrderid(orders);
+            orderdetails.setStatus("Order is procesing");
+            orderdetails.setQuantity(addto.getAquantity());
+            products p=productservice.get(addto.getProduct());
+            orderdetails.setProductid(p);
+            orderdetails.setPrice(addto.getPprice());
+            orderdetailservices.save(orderdetails);
+            addtocartservice.delete(addto.getId());
+        }
+
+    return "redirect:orderlist";
+    }
+
+    @RequestMapping("/orderlist")
+    public String orderlist( Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+//        List<orders> orders=orderservices.getAll(name);
+        model.addAttribute("orderlists",orderservices.getAll(name));
+        return "Userview/Productpage/orderlistall";
+    }
+
 }

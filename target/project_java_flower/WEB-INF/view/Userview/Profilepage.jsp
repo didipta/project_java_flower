@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
@@ -89,6 +90,7 @@
         </form>
     </div>
 </div>
+
 <div class="footer">
     <div class="footer-address">
         <h2>Contact Us</h2>

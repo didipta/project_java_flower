@@ -2,9 +2,12 @@ package com.service;
 
 import com.dao.oderdetaildao;
 import com.model.orderdetails;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class orderdetailsserviceimp implements orderdetailservice{
     private final oderdetaildao oderdetaildaos;
 
@@ -19,7 +22,7 @@ public class orderdetailsserviceimp implements orderdetailservice{
 
     @Override
     public void save(orderdetails addtocart) {
-
+      oderdetaildaos.save(addtocart);
     }
 
     @Override

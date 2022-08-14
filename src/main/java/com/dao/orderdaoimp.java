@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,9 @@ public class orderdaoimp implements orderdao{
     }
 
     @Override
-    public void save(orders addtocart) {
+    public void save(orders order) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.save(addtocart);
+        session.save(order);
     }
 
     @Override

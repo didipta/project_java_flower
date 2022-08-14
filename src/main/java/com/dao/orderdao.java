@@ -8,7 +8,7 @@ import java.util.List;
 public interface orderdao {
     public List<orders> getAll(String username);
 
-    public void save(orders addtocart);
+    public void save(orders order);
 
     public orders get(int id);
 

@@ -4,26 +4,30 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name ="order")
+@Table(name ="product_order")
 public class orders {
-
    @Id
-   @Column(name = "id")
+   @Column(name ="id")
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id ;
-   @ManyToOne
-   @JoinColumn(name = "username")
-   private User username ;
-   @Column(name = "quantity")
-   private int quantity ;
-   @Column(name = "totalprice")
-   private int totalprice;
-   @Column(name = "status")
-   private String status ;
-   @Column(name = "order_id")
-   private String orderid ;
+   private int id;
 
-   @OneToMany(mappedBy="orderid")
+   @Column(name ="username")
+   private String username;
+
+   @Column(name ="quantity")
+   private int quantity;
+   @Column(name ="totalprice")
+   private int totalprice;
+   @Column(name ="status")
+   private String status;
+   @Column(name ="token")
+   private String token;
+
+   @ManyToOne
+   @JoinColumn(name = "user_id")
+   private User users;
+
+   @OneToMany(fetch =FetchType.EAGER, mappedBy = "orderid")
    private List<orderdetails> orderdetailsList;
 
    public int getId() {
@@ -34,11 +38,11 @@ public class orders {
       this.id = id;
    }
 
-   public User getUsername() {
+   public String getUsername() {
       return username;
    }
 
-   public void setUsername(User username) {
+   public void setUsername(String username) {
       this.username = username;
    }
 
@@ -66,12 +70,20 @@ public class orders {
       this.status = status;
    }
 
-   public String getOrderid() {
-      return orderid;
+   public String getToken() {
+      return token;
    }
 
-   public void setOrderid(String orderid) {
-      this.orderid = orderid;
+   public void setToken(String token) {
+      this.token = token;
+   }
+
+   public User getUsers() {
+      return users;
+   }
+
+   public void setUsers(User users) {
+      this.users = users;
    }
 
    public List<orderdetails> getOrderdetailsList() {
