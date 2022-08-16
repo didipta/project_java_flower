@@ -1,12 +1,14 @@
 package com.dao;
 
 import com.model.User;
+import com.model.products;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 @Transactional
@@ -19,7 +21,11 @@ public class Userdaoim implements Userdaos {
     }
     @Override
     public List<User> getAll() {
-        return null;
+
+        Session session = this.sessionFactory.getCurrentSession();
+        Query<User> userContactQuery = session.createQuery("from User", User.class);
+        List<User> User = userContactQuery.getResultList();
+        return User == null ? new ArrayList<User>() : User;
     }
 
     @Override

@@ -53,7 +53,7 @@
                 <li >price-${detailes.price}</li>
                 <li >quantity-${detailes.quantity}</li>
                   <c:if test="${orderlist.status=='Delivered'}">
-                      <button class="return" style="background-color: #f0306a">rating</button>
+                      <button class="return" style="background-color: #f0306a">Return</button>
 
                   </c:if>
                   <c:if test="${orderlist.status!='Delivered'}">

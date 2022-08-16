@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface orderservice {
     public List<orders> getAll(String username);
+    public List<orders> getAlls();
 
     public void save(orders addtocart);
 

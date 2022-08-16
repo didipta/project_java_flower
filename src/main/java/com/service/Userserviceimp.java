@@ -19,7 +19,8 @@ public class Userserviceimp implements Userservices{
 
     @Override
     public List<User> getAll() {
-        return null;
+
+        return userdaoim.getAll();
     }
 
     @Override

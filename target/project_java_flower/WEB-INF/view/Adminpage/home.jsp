@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
@@ -23,7 +24,7 @@
 <body>
 <section id="sidebar">
     <div class="sidebar-brand">
-        <h2><i class="fa fa-fan"></i> <span>FLOWER-SHOP</span></h2>
+        <h2><i class="fa fa-fan"></i> <span>FLOWER</span></h2>
     </div>
     <div class="sidebar-menu">
         <ul>
@@ -34,7 +35,7 @@
             <li><a href="#"><i class="fa fa-file"></i> <span>Orders</span></a></li>
             <li><a href="#"><i class="fa fa-money"></i> <span>Income</span></a></li>
             <li><a href="#"><i class="fa fa-user"></i> <span>Account</span></a></li>
-            <li><a href="#"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
         </ul>
     </div>
 </section>
@@ -42,7 +43,7 @@
 <Section id="main-content">
     <header>
         <div class="header-left">
-            <h2 class="toggle-btn">
+            <h2 class="toggle-btn" style="padding-left: 10px">
                 <i class="fa fa-bars"></i> Dashboard
             </h2>
         </div>
@@ -52,9 +53,9 @@
                 <i class="fa fa-search"></i>
             </div>
         </div>
-        <div class="header-left header-profile">
-            <img src="images/user.png" class="img-responsive" />
-            <h3>Profile</h3>
+        <div class="header-left header-profile" >
+            <img src="${pageContext.request.contextPath}/resources/img/profilrimg.png" style="padding-left: -10px" class="img-responsive" />
+            <h3>@${loggedInUser}</h3>
             <p>Admin</p>
         </div>
         <div class="clear"></div>
@@ -66,11 +67,11 @@
             <p>Total Customers</p>
         </div>
         <div class="card">
-            <h2 class="cus-num cus-pro">500</h2>
+            <h2 class="cus-num cus-pro">${product.size()}</h2>
             <p>Total Flowers</p>
         </div>
         <div class="card">
-            <h2 class="cus-num cus-ord">50</h2>
+            <h2 class="cus-num cus-ord">${orders.size()}</h2>
             <p>Orders</p>
         </div>
         <div class="card">
@@ -92,46 +93,29 @@
             </div>
             <table style="width:100%">
                 <tr>
-                    <th>Flower Name</th>
-                    <th>Flower ID</th>
+                    <th>Order Id</th>
+                    <th>Customer</th>
+                    <th>Quantity</th>
                     <th>Amount</th>
-                    <th>Cost</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>ROSE</td>
-                    <td>05</td>
-                    <td>02</td>
-                    <td>60</td>
-                    <td><span class="pending-span"></span>Pending</td>
-                </tr>
-                <tr>
-                    <td>Lily</td>
-                    <td>02</td>
-                    <td>01</td>
-                    <td>20</td>
-                    <td><span class="progress-span"></span>In Progress</td>
-                </tr>
-                <tr>
-                    <td>ROSE</td>
-                    <td>05</td>
-                    <td>01</td>
-                    <td>30</td>
-                    <td><span class="pending-span"></span> Pending</td>
-                </tr>
-                <tr>
-                    <td>Zinia</td>
-                    <td>03</td>
-                    <td>03</td>
-                    <td>300</td>
-                    <td><span class="rev-span"></span>Review</td>
-                </tr>
+               <c:forEach var="order" items="${orders}" begin="0" end="4">
+                   <tr>
+                       <td style="font-weight: bold">${order.token}</td>
+                       <td>${order.username}</td>
+                       <td>${order.quantity}</td>
+                       <td>${order.totalprice}</td>
+                       <td><c:if test="${order.status=='Delivered'}"><span class="rev-span"></span></c:if>
+                       <c:if test="${order.status!='Delivered'}"><span class="progress-span"></span></c:if>${order.status}</td>
+                   </tr>
+               </c:forEach>
+
             </table>
         </div>
         <div class="pro-cus">
             <div class="recent-project">
                 <div class="rec-pro-h">
-                    <h2>All Employee</h2>
+                    <h2>All User</h2>
                 </div>
                 <div class="see-all">
                     <button>See all</button>
@@ -142,23 +126,17 @@
                 <tr>
                     <th>P. Pic</th>
                     <th>Name</th>
-                    <th>Contact</th>
+                    <th>Details</th>
                 </tr>
+
+
+            <c:forEach var="user" items="${Users}" begin="0" end="3">
                 <tr>
                     <td><img class="table-img" src="${pageContext.request.contextPath}/resources/img/profilrimg.png"></td>
-                    <td>Dipta Saha</td>
-                    <td class="cnt-info-td"><a href="tel:0176654836"><i class="fa fa-phone"></i></a><a href="#"><i class="fa fa-envelope"></i></a></td>
+                    <td style="font-weight: bolder">${user.user.firstname} ${user.user.lastname}</td>
+                    <td class="cnt-info-td"><a href="">Detail</a></td>
                 </tr>
-                <tr>
-                    <td><img class="table-img" src="${pageContext.request.contextPath}/resources/img/profilrimg.png"></td>
-                    <td>Chaity Gosh</td>
-                    <td class="cnt-info-td"><a href="tel:0196635482"><i class="fa fa-phone"></i></a><a href="#"><i class="fa fa-envelope"></i></a></td>
-                </tr>
-                <tr>
-                    <td><img class="table-img" src="${pageContext.request.contextPath}/resources/img/profilrimg.png"></td>
-                    <td>Shadik Hasan</td>
-                    <td class="cnt-info-td"><a href="tel:01799404026"><i class="fa fa-phone"></i></a><a href="#"><i class="fa fa-envelope"></i></a></td>
-                </tr>
+            </c:forEach>
 
             </table>
         </div>

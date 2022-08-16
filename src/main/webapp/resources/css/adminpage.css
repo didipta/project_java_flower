@@ -37,7 +37,7 @@ section#sidebar {
     top: 0;
     height: 100%;
     background-image: linear-gradient(rgba(155, 60, 183, 0.9),
-    rgba(255, 57, 111, 0.9)), url('../images/01.jpg');
+    rgba(255, 57, 111, 0.9)), url('01.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -87,7 +87,8 @@ header {
 .header-left {
     float: left;
     width: 33%;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .header-left h2 {

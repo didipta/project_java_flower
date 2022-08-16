@@ -21,6 +21,11 @@ public class orderseviceimp implements orderservice{
         return orderdaos.getAll(username);
     }
 
+    @Override
+    public List<orders> getAlls() {
+        return orderdaos.getAlls();
+    }
+
     @Transactional
     @Override
     public void save(orders addtocart) {

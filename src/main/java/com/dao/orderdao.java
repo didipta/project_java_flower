@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface orderdao {
     public List<orders> getAll(String username);
+    public List<orders> getAlls();
 
     public void save(orders order);
 
