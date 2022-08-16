@@ -32,6 +32,12 @@
     <div class="all_product">
 
         <c:forEach var="product" items="${products}">
+            <c:set var="ratings" value="${0}"></c:set>
+            <c:set var="i" value="${0}"></c:set>
+            <c:forEach var="rating" items="${product.productsratingList}">
+                <c:set var="ratings" value="${ratings+rating.rating}"></c:set>
+                <c:set var="i" value="${i+1}"></c:set>
+            </c:forEach>
             <c:url var="productidlink" value="/product/productinfo">
                 <c:param name="productId" value="${product.id}"/>
             </c:url>
@@ -39,8 +45,14 @@
                 <div class="img">
                     <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
                     <div class="icon">
-                        <p><i class="fa-solid fa-heart" style="color: deeppink"></i><span style="font-size: 12px;"> 20</span></p>
-                        <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;"> 4.5</span></p>
+                        <p><i class="fa-solid fa-heart" style="color: deeppink"></i><span style="font-size: 12px;"> ${i+2}</span></p>
+                        <c:if test="${ratings==0}">
+                            <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;">0</span></p>
+                        </c:if>
+                        <c:if test="${ratings>1}">
+                            <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;"> ${ratings/i}</span></p>
+                        </c:if>
+
                     </div>
                 </div>
                 <div class="iteam_heading">

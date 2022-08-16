@@ -1,6 +1,11 @@
 package com.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.boot.jaxb.mapping.internal.FetchTypeMarshalling;
+
 import javax.persistence.*;
+import java.util.*;
 
 
 @Entity
@@ -14,6 +19,10 @@ public class products {
    private String pname ;
     @Column(name = "P_price")
    private int Pprice ;
+
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "comproduct")
+
+    private List<Productcomment> productcommentList=new ArrayList<>();
     @Column(name = "P_description")
    private String Pdescription;
     @Column(name="P_img ")
@@ -22,6 +31,12 @@ public class products {
    private String Category ;
     @Column(name = "P_quantity ")
     private int Pquantity ;
+
+
+
+    @OneToMany(mappedBy = "ratproduct",fetch = FetchType.EAGER)
+    private Set<Productsrating> productsratingList=new HashSet<>();
+
     public int getId() {
         return id;
     }
@@ -76,5 +91,21 @@ public class products {
 
     public void setPquantity(int pquantity) {
         Pquantity = pquantity;
+    }
+
+    public List<Productcomment> getProductcommentList() {
+        return productcommentList;
+    }
+
+    public void setProductcommentList(List<Productcomment> productcommentList) {
+        this.productcommentList = productcommentList;
+    }
+
+    public Set<Productsrating> getProductsratingList() {
+        return productsratingList;
+    }
+
+    public void setProductsratingList(Set<Productsrating> productsratingList) {
+        this.productsratingList = productsratingList;
     }
 }

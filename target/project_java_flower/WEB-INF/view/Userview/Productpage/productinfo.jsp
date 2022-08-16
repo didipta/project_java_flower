@@ -25,7 +25,16 @@
     </style>
 </head>
 <body>
-
+<c:set var="ratings" value="${0}"></c:set>
+<c:set var="i" value="${0}"></c:set>
+<c:set var="name" value=""></c:set>
+<c:forEach var="rating" items="${product.productsratingList}">
+    <c:set var="ratings" value="${ratings+rating.rating}"></c:set>
+    <c:set var="i" value="${i+1}"></c:set>
+    <c:if test="${rating.username==username}">
+        <c:set var="name" value="${rating.rating} "></c:set>
+    </c:if>
+</c:forEach>
 
 <main class="container">
     <div class="headered">
@@ -37,8 +46,45 @@
         </div>
 
         <div class="details">
-            <h1>${product.pname}</h1>
-                <p>Beautiful flower. Rating is (4.5/5) </p>
+            <div style="display: flex;justify-content:center;align-items: center;">
+               <div style="width: 400px">
+                   <h1>${product.pname}</h1>
+                   <p>Beautiful flower. Rating is
+                       <c:if test="${ratings==0}">
+                           <span style="font-weight: bolder">(0/5)</span>
+                   </c:if>
+                   <c:if test="${ratings>1}">
+                       <span style="font-weight: bolder">(${ratings/i}/5)</span>
+                   </c:if>
+                     </p>
+
+               </div>
+                <div>
+                    <div class="rating-wrap">
+                        <c:if test="${empty name}">
+                            <div class="center">
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" class="inputs"/><label for="star5" class="full" title="Awesome"></label>
+                                    <input type="radio" id="star4.5" name="rating" value="4.5" class="inputs"/><label for="star4.5" class="half"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" class="inputs"/><label for="star4" class="full"></label>
+                                    <input type="radio" id="star3.5" name="rating" value="3.5" class="inputs"/><label for="star3.5" class="half"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" class="inputs"/><label for="star3" class="full"></label>
+                                    <input type="radio" id="star2.5" name="rating" value="2.5" class="inputs"/><label for="star2.5" class="half"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" class="inputs"/><label for="star2" class="full"></label>
+                                    <input type="radio" id="star1.5" name="rating" value="1.5" class="inputs"/><label for="star1.5" class="half"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" class="inputs"/><label for="star1" class="full"></label>
+                                    <input type="radio" id="star0.5" name="rating" value="0.5" class="inputs"/><label for="star0.5" class="half"></label>
+                                </fieldset>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty name}">
+                            <h6 style="color: #f0306a">Given rating- ${name}/5</h6>
+                        </c:if>
+
+                    </div>
+                </div>
+
+            </div>
             <hr>
             <p>${product.pdescription}</p>
             <h4 style="color: #3b3b3b">৳- ${product.pprice} <span style="text-decoration-line: line-through; color: rgba(231,23,23,0.95)">৳-${product.pprice+10}</span></h4>
@@ -53,6 +99,59 @@
                 </div>
             </form>
 
+        </div>
+    </div>
+    <div class="rating_submit" id="back">
+        <h3 id="rating-value"></h3>
+        <h2>${product.pname}</h2>
+        <form action="productrating" method="post">
+            <input type="hidden" name="pro_idd" value="${product.id}">
+            <input type="hidden" name="rating" id="valu_show">
+            <button style="background-color:rgb(240,48,106); border-radius: 10px">Submit</button>
+
+        </form>
+        <a href=""><button style="background-color: #262626; border-radius: 10px">Cancel</button></a>
+    </div>
+    <div class="comment">
+        <h2>Comment list</h2>
+        <hr>
+        <div class="list_comment">
+            <c:forEach var="produtlist" items="${product.productcommentList}">
+                <div class="comment_list">
+                    <h4>@${produtlist.username}</h4>
+                    <div class="comments">
+                        <p>${produtlist.comment}</p>
+                        <c:if test="${produtlist.username==username}">
+                            <div class="com_btn">
+                                <button style="color: #ca0a70"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <a href="commentdelete?id=${produtlist.id}&p_id=${product.id}"><button style="color: #3f3e3e"><i class="fa-solid fa-trash-can"></i> </button></a>
+                            </div>
+                        </c:if>
+                        <c:if test="${produtlist.username!=username}">
+                            <div class="com_btn">
+                                <button style="color: #3f3e3e"><i class="fa-solid fa-thumbs-up"></i>(14)</button>
+
+                            </div>
+                        </c:if>
+
+                    </div>
+
+                </div>
+            </c:forEach>
+
+
+        </div>
+            <div class="comment_send">
+                <form action="productcomment" method="post">
+                    <i class="fa-solid fa-pen" style="background-color: white; color:#696969; font-size: 1.3rem"></i>
+                    <input type="hidden" name="product_id" value="${product.id}">
+                    <input type="text" name="comment" placeholder="Enter your valuable comment....">
+
+                    <button style="background-color: white; color:#696969; font-size: 1.3rem"><i class="fa-solid fa-paper-plane"></i></button>
+                    <hr>
+                </form>
+
+            </div>
         </div>
     </div>
     <section class="our_product">
@@ -134,6 +233,23 @@
         $('input[type="number"]').niceNumber();
 
     });
+
+
+
+    let star = document.querySelectorAll('.inputs');
+    let back=document.getElementById("back");
+    let showValue = document.querySelector('#rating-value');
+    let showValuetext = document.querySelector('#valu_show');
+
+    for (let i = 0; i < star.length; i++) {
+        star[i].addEventListener('click', function() {
+            i = this.value;
+
+            showValue.innerHTML = i + "/5";
+            showValuetext.value = i;
+            back.style.display="block";
+        });
+    }
 </script>
 </body>
 </html>

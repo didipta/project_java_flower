@@ -36,9 +36,9 @@
                     </ul>
                 </a>
                 </li>
-                <li><a href="">Blogs</a> </li>
-                <li><a href="">Contact us</a> </li>
-                <li><a href="">About us</a> </li>
+                <li><a href="#section-3">Blogs</a> </li>
+                <li><a href="#footer">Contact us</a> </li>
+                <li><a href="#footer">About us</a> </li>
                 <li><a href=""><i class="fa-solid fa-bell"></i></a> </li>
                 <li><a href="${pageContext.request.contextPath}/User/profile"><i class="fa-solid fa-user"></i> @${loggedInUser} </a></li>
                 <button><a href="${pageContext.request.contextPath}/logout">Log Out</a></button>
@@ -90,6 +90,12 @@
         <div class="all_product">
             <%! int i=0; %>
             <c:forEach var="product" items="${products}" begin="0" end="4">
+                <c:set var="ratings" value="${0}"></c:set>
+                <c:set var="i" value="${0}"></c:set>
+                <c:forEach var="rating" items="${product.productsratingList}">
+                    <c:set var="ratings" value="${ratings+rating.rating}"></c:set>
+                    <c:set var="i" value="${i+1}"></c:set>
+                </c:forEach>
                     <c:url var="productidlink" value="/product/productinfo">
                         <c:param name="productId" value="${product.id}"/>
                     </c:url>
@@ -97,8 +103,13 @@
                 <div class="img">
                     <img src="${pageContext.request.contextPath}/resources/img/${product.pimg}">
                     <div class="icon">
-                        <p><i class="fa-solid fa-heart" style="color: deeppink"></i><span style="font-size: 12px;"> 20</span></p>
-                        <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;"> 4.5</span></p>
+                        <p><i class="fa-solid fa-heart" style="color: deeppink"></i><span style="font-size: 12px;"> ${i+2}</span></p>
+                        <c:if test="${ratings==0}">
+                            <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;">0</span></p>
+                        </c:if>
+                        <c:if test="${ratings>1}">
+                            <p><i class="fa-solid fa-star" style="color: goldenrod"></i><span style="font-size: 12px;"> ${ratings/i}</span></p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="iteam_heading">
@@ -121,6 +132,9 @@
         </c:url>
         <c:url var="GIFTlink" value="/product/categoryproduct">
             <c:param name="category" value="Gift flower"/>
+        </c:url>
+        <c:url var="birthgift" value="/product/categoryproduct">
+            <c:param name="category" value="Birthday flower"/>
         </c:url>
 
         <div class="catagory">
@@ -157,7 +171,7 @@
     <div class="details">
         <h2>Beautiful Range of</h2>
         <h3>ColourFul Birthday Flower</h3>
-        <button>View Collection</button>
+        <a href="${birthgift}" ><button>View Collection</button></a>
     </div>
 </div>
 <main id="section-3">
@@ -198,7 +212,7 @@
 
 
 </main>
-<div class="footer">
+<div class="footer" id="footer">
     <div class="footer-address">
         <h2>Contact Us</h2>
 

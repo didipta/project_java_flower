@@ -12,6 +12,7 @@
 <head>
     <title>Flower|order list</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/orderpage.css">
+    <script src="https://kit.fontawesome.com/c476ca993e.js" crossorigin="anonymous"></script>
     <style>
         .headered{
             font-size: 1rem;
@@ -52,11 +53,11 @@
                 <li >price-${detailes.price}</li>
                 <li >quantity-${detailes.quantity}</li>
                   <c:if test="${orderlist.status=='Delivered'}">
+                      <button class="return" style="background-color: #f0306a">rating</button>
 
-                      
                   </c:if>
                   <c:if test="${orderlist.status!='Delivered'}">
-                      <li style="color: #0a58ca">${detailes.status}</li>
+                      <li style="color: #0a58ca;font-weight: bolder">${detailes.status}</li>
                   </c:if>
 
               </div>
@@ -67,6 +68,12 @@
     </c:forEach>
 </div>
 
+<script>
+    function show(a,b)
+    {
 
+        console.log("da ndjndla");
+    }
+</script>
 </body>
 </html>

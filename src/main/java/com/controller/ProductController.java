@@ -22,23 +22,26 @@ public class ProductController {
     private final Userservices userserviceim;
     private final orderservice orderservices;
     private final orderdetailservice orderdetailservices;
+    private final productcommentservice productcommentservice;
 
-
-    public ProductController(com.service.productservice productservice, com.service.addtocartservice addtocartservice, Userservices userserviceim, orderservice orderservices, orderdetailservice orderdetailservices) {
+    public ProductController(com.service.productservice productservice, com.service.addtocartservice addtocartservice, Userservices userserviceim, orderservice orderservices, orderdetailservice orderdetailservices, com.service.productcommentservice productcommentservice) {
         this.productservice = productservice;
         this.addtocartservice = addtocartservice;
         this.userserviceim = userserviceim;
         this.orderservices = orderservices;
         this.orderdetailservices = orderdetailservices;
+        this.productcommentservice = productcommentservice;
     }
 
     @RequestMapping(value = "/productinfo",method = RequestMethod.GET)
     public String productshow(@RequestParam("productId") int id, Model model)
     {
        products product= productservice.get(id);
-
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
         model.addAttribute("products",productservice.getAll(product.getCategory()));
          model.addAttribute("product",product);
+        model.addAttribute("username",name);
 
          return "Userview/Productpage/productinfo";
     }
@@ -141,6 +144,42 @@ public class ProductController {
 //        List<orders> orders=orderservices.getAll(name);
         model.addAttribute("orderlists",orderservices.getAll(name));
         return "Userview/Productpage/orderlistall";
+    }
+
+    @RequestMapping("/productcomment")
+    public String productcomment(HttpServletRequest request, Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        Productcomment productcomment=new Productcomment();
+        productcomment.setUsername(name);
+        products p=productservice.get(Integer.parseInt(request.getParameter("product_id")));
+        productcomment.setComproduct(p);
+        productcomment.setComment(request.getParameter("comment"));
+
+        productcommentservice.save(productcomment);
+
+  return "redirect:productinfo?productId="+p.getId();
+
+    }
+    @RequestMapping("/commentdelete")
+    public String commentdelect(@RequestParam("id") int id,@RequestParam("p_id") int p_id,Model model) {
+        productcommentservice.delete(id);
+        return "redirect:productinfo?productId="+p_id;
+    }
+    @RequestMapping("/productrating")
+    public String productratings(HttpServletRequest request, Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String name=authentication.getName();
+        Productsrating productratingp=new Productsrating();
+        productratingp.setUsername(name);
+        products p=productservice.get(Integer.parseInt(request.getParameter("pro_idd")));
+        productratingp.setRatproduct(p);
+        productratingp.setRating(Double.parseDouble(request.getParameter("rating")));
+
+        productcommentservice.saverating(productratingp);
+
+        return "redirect:productinfo?productId="+p.getId();
+
     }
 
 }

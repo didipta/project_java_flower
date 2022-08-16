@@ -65,6 +65,7 @@ body
     height: 300px;
     padding: 50px;
 }
+
 .product-info .details h1
 {
     margin-left: 10px;
@@ -124,7 +125,7 @@ body
 
 
 }
-.btn-2 button
+.btn-2 button,.rating_submit button
 {
     width: 250px;
     height: 40px;
@@ -246,4 +247,164 @@ body
 {
     font-weight: 700;
     font-size: 0.9rem;
+}
+
+.comment
+{
+    background-color: #efefef;
+    max-width: 1000px;
+    position: relative;
+    top: 3vh;
+    left:17vw;
+    padding: 15px;
+}
+
+.list_comment
+{
+    height: 300px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+    padding: 10px;
+
+}
+.comment_list
+{
+    padding: 10px;
+    background-color: #eaf1f6;
+}
+.comment h2
+ {
+     margin: 10px;
+     color: #3f4646;
+    letter-spacing: 1.5px;
+ }
+.comment_list h4 ,.comment h2
+{
+    margin: 5px 6px;
+    color: #333232;
+}
+.comments
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+.comments p
+{
+    width: 80%;
+    text-align: justify-all;
+    margin: 5px;
+}
+.com_btn button,.comment_send form button
+{
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+}
+.comment_send
+{
+
+    display: flex;
+    background-color: white;
+    padding: 20px 10px;
+    padding: 20px 10px;
+}
+.comment_send form
+{
+    width: 100%;
+    padding: 20px;
+}
+.comment_send form input
+{
+    width: 90%;
+    border:none;
+    background-color: white;
+    outline: none;
+    margin: 10px;
+    padding: 10px;
+    font-weight: 700;
+}
+
+.rating-wrap{
+    max-width: 380px;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+
+}
+.center{
+    width: 162px;
+    margin: auto;
+}
+
+
+/*styling star rating*/
+.rating{
+    border: none;
+    float: left;
+}
+
+.rating > .inputs{
+    display: none;
+}
+.rating > label:before{
+    content: '\f005';
+    font-family: FontAwesome;
+    margin: 5px;
+    font-size: 1rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.rating > .half:before{
+    content: '\f089';
+    position: absolute;
+    cursor: pointer;
+}
+
+
+.rating > label{
+    color: #ddd;
+    float: right;
+    cursor: pointer;
+}
+
+.rating > .inputs:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{
+    color: #f0306a;
+}
+
+.rating > .inputs:checked + label:hover,
+.rating > .inputs:checked ~ label:hover,
+.rating > label:hover ~ .inputs:checked ~ label,
+.rating > .inputs:checked ~ label:hover ~ label{
+    color: #f31a9b;
+}
+.rating_submit
+{
+    width: 300px;
+    padding: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    box-shadow: 10px 10px 10px 10px rgba(121, 121, 121, 0.7);
+    background-image: url("success.gif");
+    text-align: center;
+    z-index: 100;
+    align-items: center;
+    border-radius: 5px;
+    display: none;
 }
