@@ -31,8 +31,8 @@
             <li><a href="#"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
             <li><a href="#"><i class="fa fa-chart-line"></i> <span>Statement</span></a></li>
             <li><a href="#"><i class="fa fa-users"></i> <span>Customers</span></a></li>
-            <li><a href="#"><i class="fa fa-fan"></i> <span>Flowers</span></a></li>
-            <li><a href="#"><i class="fa fa-file"></i> <span>Orders</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/productlist"><i class="fa fa-fan"></i> <span>Flowers</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/orderlist"><i class="fa fa-file"></i> <span>Orders</span></a></li>
             <li><a href="#"><i class="fa fa-money"></i> <span>Income</span></a></li>
             <li><a href="#"><i class="fa fa-user"></i> <span>Account</span></a></li>
             <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
@@ -87,7 +87,7 @@
                     <h2>Recent Orders</h2>
                 </div>
                 <div class="see-all">
-                    <button>See all</button>
+                    <a href="${pageContext.request.contextPath}/admin/orderlist"><button>See all</button></a>
                 </div>
                 <div class="clear"></div>
             </div>
