@@ -45,12 +45,16 @@ public class orderdaoimp implements orderdao{
 
     @Override
     public orders get(int id) {
-        return null;
+
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.get(orders.class, id);
     }
 
     @Override
     public void update(orders addtocart) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(addtocart);
+        session.flush();
     }
 
     @Override

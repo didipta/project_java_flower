@@ -87,7 +87,7 @@
 
                     <label>IMAGE</label></br>
                     <input type="file" name="pimg">
-                        </br>
+                    </br>
 
 
                     <button>ADD</button>

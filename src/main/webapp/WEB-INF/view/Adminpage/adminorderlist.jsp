@@ -41,25 +41,7 @@
 </section>
 
 <Section id="main-content">
-    <header>
-        <div class="header-left">
-            <h2 class="toggle-btn">
-                <i class="fa fa-bars"></i> Order List
-            </h2>
-        </div>
-        <div class="header-left header-serach">
-            <div class="serach-par">
-                <input class="search" type="text" placeholder="Search Here...">
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
-        <div class="header-left header-profile">
-            <img src="images/user.png" class="img-responsive" />
-            <h3>Profile</h3>
-            <p>Admin</p>
-        </div>
-        <div class="clear"></div>
-    </header>
+
     <div class="clear"></div>
     <div class="main-content-info container">
         <div class="card">
@@ -84,10 +66,14 @@
                         <th>Quantity</th>
                         <th>Amount</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
 
 
                     <c:forEach var="order" items="${orders}">
+                        <c:url var="orderidlink" value="/product/productinfo">
+                            <c:param name="orderid" value="${order.id}"/>
+                        </c:url>
                         <tr>
                             <td style="font-weight: bold">${order.token}</td>
                             <td>${order.username}</td>
@@ -95,7 +81,24 @@
                             <td>${order.totalprice}</td>
                             <td><c:if test="${order.status=='Delivered'}"><span class="rev-span"></span></c:if>
                                 <c:if test="${order.status!='Delivered'}"><span class="progress-span"></span></c:if>${order.status}</td>
-                            <td><button style="width: 150px">Detailes show</button></td>
+
+                            <td style="display: flex">
+                                <c:if test="${order.status!='Delivered'}">
+                                    <form action="orderstatus" method="post">
+                                        <input type="hidden" name="order_id" value="${order.id}">
+                                        <select name="status">
+                                            <option value="${order.status}">${order.status}</option>
+                                            <option value="order is on the way">order is on the way</option>
+                                            <option value="Delivered">Delivered</option>
+                                        </select>
+                                        <button style="width: 80px">change</button>
+                                    </form>
+                                </c:if>
+                                <c:if test="${order.status=='Delivered'}">
+                                    <p style="color: deeppink;font-weight: bolder;font-size: 0.8rem">This order all readly delivered</p>
+                                </c:if>
+
+                            </td>
                         </tr>
 
                                 <tr style="background-color: #85a4d5; text-align: center;">
@@ -116,6 +119,8 @@
 
                     </c:forEach>
                 </table>
+
+
             </div>
         </div>
     </div>

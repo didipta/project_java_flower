@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
@@ -14,7 +16,7 @@
     <title>Admin Dashboard</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-witdh, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admitproduct.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/productadd.css" />
     <script src="https://kit.fontawesome.com/ec8ab4f226.js" crossorigin="anonymous"></script>
 
 
@@ -27,14 +29,14 @@
     </div>
     <div class="sidebar-menu">
         <ul>
-            <li><a href="index.html"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/one"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
             <li><a href="#"><i class="fa fa-chart-line"></i> <span>Statement</span></a></li>
-            <li><a href="Employee.html"><i class="fa fa-users"></i> <span>Employee</span></a></li>
-            <li><a href="Flower.html"><i class="fa fa-fan"></i> <span>Flowers</span></a></li>
-            <li><a href="OrderList.html"><i class="fa fa-file"></i> <span>Orders</span></a></li>
+            <li><a href="#"><i class="fa fa-users"></i> <span>Customers</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/productlist"><i class="fa fa-fan"></i> <span>Flowers</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/orderlist><i class="fa fa-file"></i> <span>Orders</span></a></li>
             <li><a href="#"><i class="fa fa-money"></i> <span>Income</span></a></li>
             <li><a href="#"><i class="fa fa-user"></i> <span>Account</span></a></li>
-            <li><a href="#"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
         </ul>
     </div>
 </section>
@@ -46,17 +48,7 @@
                 <i class="fa fa-bars"></i> Add Flower
             </h2>
         </div>
-        <div class="header-left header-serach">
-            <div class="serach-par">
-                <input class="search" type="text" placeholder="Search Here...">
-                <i class="fa fa-search"></i>
-            </div>
-        </div>
-        <div class="header-left header-profile">
-            <img src="images/user.png" class="img-responsive" />
-            <h3>Profile</h3>
-            <p>Admin</p>
-        </div>
+
         <div class="clear"></div>
     </header>
     <div class="clear"></div>
@@ -67,36 +59,39 @@
             <div class="content-3">
                 <h1>Add A New Flower</h1>
 
-                <form action="" method="POST">
+                <c:form action="productaddd" modelAttribute="product">
+
+
 
                     <label>FLOWER NAME</label></br>
-                    <input type="text" name="p_name" id="p_name"></br>
+                    <form:input path="pname"></form:input></br>
 
                     <label>PRICE</label></br>
-                    <input type="text" name="p_price" id="p_price"></br>
+                    <form:input path="pprice"></form:input> </br>
 
                     <label>DESCRIPTION</label></br>
-                    <input type="text" name="p_description" id="p_description"></br>
+                    <form:input path="pdescription"></form:input> </br>
 
                     <label>QUANTITY</label></br>
-                    <input type="text" name="p_quantity" id="p_quantity"></br>
+                    <form:input path="pquantity"></form:input> </br>
 
                     <label>CATEGORY</label></br>
-                    <select name="Category">
+                    <form:select path="category">
                         <option value=" ">-------</option>
                         <option value="Summer flower">Summer flower</option>
                         <option value="Wedding flower">Wedding flower</option>
                         <option value="Gift flower">Gift flower</option>
                         <option value="Birthday flower">Birthday flower</option>
-                    </select>
+                    </form:select><br>
 
 
                     <label>IMAGE</label></br>
-                    <input type="file" name="p_img" id="p_img"></br>
+                    <input type="file" name="pimg">
+                        </br>
 
 
                     <button>ADD</button>
-                </form>
+                </c:form>
 
 
             </div>

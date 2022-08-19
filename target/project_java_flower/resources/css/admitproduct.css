@@ -295,3 +295,26 @@ td.cnt-info-td i {
     font-weight: bolder;
     padding: 10px;
 }
+
+.list_order
+{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 10px;
+}
+.list_order li
+{
+    padding: 10px;
+}
+.list_order li button
+{
+    padding: 10px 5px;
+    outline: none;
+    border: none;
+    background-color: #f0306a;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}

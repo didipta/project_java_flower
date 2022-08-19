@@ -26,7 +26,8 @@ public class productdaoim implements productdao{
 
     @Override
     public void save(products user) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(user);
     }
 
     @Override
@@ -37,7 +38,9 @@ public class productdaoim implements productdao{
 
     @Override
     public void update(products products) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(products);
+        session.flush();
     }
 
     @Override

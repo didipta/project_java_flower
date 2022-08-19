@@ -22,7 +22,7 @@ public class productsserviceim implements productservice{
 
     @Override
     public void save(products user) {
-
+       productdao.save(user);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class productsserviceim implements productservice{
 
     @Override
     public void update(products products) {
-
+    productdao.update(products);
     }
 
     @Override

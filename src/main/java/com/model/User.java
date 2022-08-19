@@ -2,6 +2,7 @@ package com.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -17,9 +18,11 @@ public class User {
     private String username;
 
     @NotNull
+    @Size(min=8, max=20)
     @Column(name = "password")
    private String password;
     @NotNull
+    @Size(min=8, max=20)
    @Column(name = "c_password")
    private String cpassword;
 

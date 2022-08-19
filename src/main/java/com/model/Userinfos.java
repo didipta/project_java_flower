@@ -1,7 +1,10 @@
 package com.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_info")
@@ -22,9 +25,11 @@ public class Userinfos {
 
     @NotNull
     @Column(name = "email")
+    @Email
    private String email;
 
     @NotNull
+    @Size(min=11,max = 11)
     @Column(name = "phome_number")
    private String phomenumber;
 
@@ -33,8 +38,10 @@ public class Userinfos {
    private String address;
 
 
+
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @Valid
+    @JoinColumn( name = "user_id")
     private User user;
 
     public int getId() {

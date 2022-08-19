@@ -40,7 +40,9 @@ public class orsedetaildaoimp implements oderdetaildao{
 
     @Override
     public void update(orderdetails addtocart) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(addtocart);
+        session.flush();
     }
 
     @Override

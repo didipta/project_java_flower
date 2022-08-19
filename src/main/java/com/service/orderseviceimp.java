@@ -34,12 +34,12 @@ public class orderseviceimp implements orderservice{
 
     @Override
     public orders get(int id) {
-        return null;
+        return orderdaos.get(id);
     }
 
     @Override
     public void update(orders addtocart) {
-
+     orderdaos.update(addtocart);
     }
 
     @Override

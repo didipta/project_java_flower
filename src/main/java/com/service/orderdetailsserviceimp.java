@@ -32,6 +32,7 @@ public class orderdetailsserviceimp implements orderdetailservice{
 
     @Override
     public void update(orderdetails addtocart) {
+        oderdetaildaos.update(addtocart);
 
     }
 
