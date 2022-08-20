@@ -129,7 +129,7 @@
                         </c:if>
                         <c:if test="${produtlist.username!=username}">
                             <div class="com_btn">
-                                <button style="color: #3f3e3e"><i class="fa-solid fa-thumbs-up"></i>(14)</button>
+                                <button style="color: #3f3e3e"><i class="fa-solid fa-thumbs-up" style="color: #0c63e4"></i>(14)</button>
 
                             </div>
                         </c:if>

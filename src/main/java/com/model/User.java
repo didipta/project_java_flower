@@ -1,6 +1,10 @@
 package com.model;
 
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -27,7 +31,7 @@ public class User {
    private String cpassword;
 
     @NotNull
-   @Column(name = "usertype")
+    @Column(unique = true, name = "usertype")
    private String usertype;
 
 
@@ -36,7 +40,7 @@ public class User {
     private Userinfos user;
 
 
-    @OneToMany(mappedBy ="users")
+    @OneToMany(fetch=FetchType.EAGER,mappedBy ="users")
     private List<orders> ordersList;
 
     public int getId() {

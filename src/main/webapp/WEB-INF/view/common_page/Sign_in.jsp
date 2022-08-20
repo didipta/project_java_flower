@@ -34,9 +34,7 @@
 <%--            <hr>--%>
 <%--        </form:form>--%>
 
-        <c:if test="${param.error != null}">
-            Username/Password is incorrect
-        </c:if>
+
 
         <form:form action="${pageContext.request.contextPath}/login" modelAttribute="user">
             <label>
@@ -56,6 +54,9 @@
                 <hr>
                 <span class="errors"><form:errors path="password"></form:errors></span>
             </label>
+            <c:if test="${param.error != null}">
+                <p style="color: #e31515; text-align: center; font-weight: bolder"> Username or Password is incorrect</p>
+            </c:if>
             <div class="btn">
                 <button>Log-in</button>
             </div>

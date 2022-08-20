@@ -103,4 +103,10 @@ public class AdminController {
         orderservices.update(order);
         return "redirect:orderlist";
     }
+    @RequestMapping("/allusershow")
+    public String Allusershow(Model model)
+    {
+        model.addAttribute("alluser",userserviceim.getAll());
+        return "Adminpage/allusershow";
+    }
 }
